@@ -3,9 +3,10 @@ import React, { useState } from "react";
 type Props = {
   selectedOption: string;
   handleSelect: (option: string) => void;
+  isError: boolean;
 };
 
-const Dropdown = ({ selectedOption, handleSelect }: Props) => {
+const Dropdown = ({ selectedOption, handleSelect, isError }: Props) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const options: string[] = ["Internet", "Television", "Other Places"];
@@ -16,17 +17,33 @@ const Dropdown = ({ selectedOption, handleSelect }: Props) => {
 
   return (
     <>
-      <div className="relative contactInput cursor-pointer w-80 md:w-auto">
+      <div
+        style={
+          isError
+            ? {
+                border: "1px",
+                borderStyle: "solid",
+                borderColor: "#b63636",
+              }
+            : {}
+        }
+        className="relative contactInput cursor-pointer w-80 md:w-auto"
+      >
         <div
           onClick={toggleDropdown}
           className="flex justify-between items-center"
         >
           <label
-            className={`text-${
-              selectedOption && options.includes(selectedOption)
-                ? "black"
-                : "gray-500"
-            }`}
+            style={
+              selectedOption === ""
+                ? {
+                    color: "rgb(107 114 128)",
+                  }
+                : {
+                    color: "black",
+                    opacity: 0.75,
+                  }
+            }
           >
             {selectedOption || "How did you hear about us?"}
           </label>

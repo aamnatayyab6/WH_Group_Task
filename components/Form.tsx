@@ -74,6 +74,7 @@ const Form = (props: Props) => {
         <input
           name="name"
           placeholder="Name"
+          className="contactInput w-80 md:w-auto"
           style={
             formErrors.name
               ? {
@@ -81,11 +82,8 @@ const Form = (props: Props) => {
                   borderStyle: "solid",
                   borderColor: "#b63636",
                 }
-              : {
-                  borderStyle: "none",
-                }
+              : {}
           }
-          className="contactInput w-80 md:w-auto"
           type="text"
           value={formData.name}
           onChange={handleInputChange}
@@ -105,9 +103,7 @@ const Form = (props: Props) => {
                   borderStyle: "solid",
                   borderColor: "#b63636",
                 }
-              : {
-                  borderStyle: "none",
-                }
+              : {}
           }
           className="contactInput w-80 md:w-auto"
           type="text" //type could have been email, following task description instead
@@ -129,9 +125,7 @@ const Form = (props: Props) => {
                   borderStyle: "solid",
                   borderColor: "#b63636",
                 }
-              : {
-                  borderStyle: "none",
-                }
+              : {}
           }
           className="contactInput w-80 md:w-auto"
           type="text"
@@ -148,6 +142,7 @@ const Form = (props: Props) => {
           handleSelect={(option: string) =>
             setFormData({ ...formData, selectedOption: option })
           }
+          isError={formErrors.selectedOption === "You must select an option from the dropdown!"}
         />
         {formErrors.selectedOption && (
           <span className="errors-text">{formErrors.selectedOption}</span>
@@ -184,9 +179,9 @@ const Form = (props: Props) => {
         <button
           type="submit"
           className="bg-header-color/60 py-5 px-10 rounded-md
-           text-gray-200 text-lg w-80 md:w-auto"
+           text-gray-300 text-lg w-80 md:w-auto uppercase tracking-[5px]"
         >
-          Submit
+          Register
         </button>
       </form>
 
